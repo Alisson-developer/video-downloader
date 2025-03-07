@@ -2,6 +2,7 @@ package com.snowplat.video_downloader.kafka;
 
 import com.snowplat.video_downloader.dto.DownloadDTO;
 import com.snowplat.video_downloader.dto.YtDownloadsDTO;
+import com.snowplat.video_downloader.util.UtilitarioValidacao;
 import lombok.RequiredArgsConstructor;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Component;
@@ -18,6 +19,7 @@ public class VideoProducer {
 
     public void sendMessage(YtDownloadsDTO ytDownload) {
         for (String url : ytDownload.getUrls()) {
+            UtilitarioValidacao.validarUrl(url);
             kafkaTemplate.send(TOPIC_NAME, IDENTIFY_KEY,new DownloadDTO(ytDownload.getPath(), url));
         }
     }

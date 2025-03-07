@@ -24,7 +24,7 @@ public class YoutubeDownloaderService {
 
 
     public void startDownload(DownloadDTO downloadDTO) {
-        String pathFormatado = UtilitarioValidacao.validarBarrasDeUrl(downloadDTO.getPath());
+        String pathFormatado = UtilitarioValidacao.validarBarrasDePath(downloadDTO.getPath());
         processarDownload(pathFormatado, downloadDTO.getUrl());
     }
 
